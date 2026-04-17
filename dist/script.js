@@ -54,3 +54,76 @@ document.addEventListener("DOMContentLoaded", function() {
             jokeDisplay.textContent = joke;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("scene");
+    const ctx = canvas.getContext("2d");
+
+    drawGround(ctx, canvas);
+    drawSnowText(ctx, canvas);
+    drawSnowman(ctx);
+    drawSnowflakes(ctx, canvas);
+});
+
+function drawGround(ctx, canvas) {
+    // Sky
+    ctx.fillStyle = "#ccc";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Ground
+    ctx.fillStyle = "brown";
+    ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
+}
+
+function drawSnowText(ctx, canvas) {
+    ctx.font = "80px Verdana";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = "blue";
+
+    ctx.fillText("SNOW", canvas.width / 2, 10);
+}
+
+function drawSnowman(ctx) {
+    ctx.fillStyle = "white";
+
+    // Bottom
+    ctx.beginPath();
+    ctx.arc(150, 200, 50, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Middle
+    ctx.beginPath();
+    ctx.arc(150, 120, 40, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Top
+    ctx.beginPath();
+    ctx.arc(150, 60, 25, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+const flakeSize = 6;
+
+function drawSnowflakes(ctx, canvas) {
+    for (let i = 0; i < 100; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+
+        drawSingleFlake(ctx, x, y);
+    }
+}
+
+function drawSingleFlake(ctx, x, y) {
+    ctx.beginPath();
+
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + flakeSize / 2, y + flakeSize / 2);
+    ctx.lineTo(x, y + flakeSize);
+    ctx.lineTo(x - flakeSize / 2, y + flakeSize / 2);
+
+    ctx.closePath();
+
+    ctx.fillStyle = "#eee";
+    ctx.fill();
+}

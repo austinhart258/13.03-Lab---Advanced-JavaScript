@@ -1,5 +1,5 @@
 h1{
-  border-color: #d3e644;
+  border-color: #c2f5e6;
   border-style: dashed;
 }
 
@@ -26,4 +26,10 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background-color: #e9e9e9;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #333;
 }
